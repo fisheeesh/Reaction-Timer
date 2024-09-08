@@ -4,17 +4,21 @@
   <div v-if="isPlaying">
     <Block :delay = "delay" @endGame="endGame"/>
   </div>
-  <p>Resut is {{ score }} ms</p>
+  <div v-if="isEnd">
+    <Result :result="score"/>
+  </div>
 </template>
 
 <script>
+import Result from './components/Result.vue';
 import Block from './components/Block.vue';
 export default {
   data(){
     return{
       isPlaying: false,
       delay : null,
-      score : 0
+      score : 0,
+      isEnd : false,
     }
   },
   methods : {
@@ -25,10 +29,13 @@ export default {
     },
     endGame(score){
       this.score = score
+      this.isEnd = true
+      this.isPlaying = false
     }
   },
   components: {
-    Block
+    Block,
+    Result
   }
 }
 </script>

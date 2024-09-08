@@ -2,8 +2,9 @@
   <h1>How fast can you catch me?</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
   <div v-if="isPlaying">
-    <Block :delay = "delay"/>
+    <Block :delay = "delay" @endGame="endGame"/>
   </div>
+  <p>Resut is {{ score }} ms</p>
 </template>
 
 <script>
@@ -13,6 +14,7 @@ export default {
     return{
       isPlaying: false,
       delay : null,
+      score : 0
     }
   },
   methods : {
@@ -20,6 +22,9 @@ export default {
       this.isPlaying = true
       this.delay = 2000 + Math.random() * 5000
       console.log(this.isPlaying)
+    },
+    endGame(score){
+      this.score = score
     }
   },
   components: {

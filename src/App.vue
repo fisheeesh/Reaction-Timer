@@ -24,6 +24,7 @@ export default {
   methods : {
     start(){
       this.isPlaying = true
+      this.isEnd = false
       this.delay = 2000 + Math.random() * 5000
       console.log(this.isPlaying)
     },
